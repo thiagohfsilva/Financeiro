@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 def layout():
     # - INTERFACE PRINCIPAL DO SOFTWARE
     Title_layout = [
@@ -71,8 +72,8 @@ def layout():
         ],
         [
             sg.Table(
-                [[1,2,3,4,5,6,7,8,9,10],[1,2,3,4,5,6,7,8,9,10]],
-                ["um","dois"],
+                [[1, 2, 3, 4, 5, 6, 7, 8 , 9, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+                ["um", "dois"],
                 auto_size_columns=True,
                 k='-TabelaBig-',
                 expand_x=False,
@@ -134,7 +135,10 @@ def layout():
         background_color='white',
         right_click_menu=sg.MENU_RIGHT_CLICK_EDITME_VER_EXIT,
         )
+
+
 window = layout()
+
 while True:
     event,values = window.read()
 
