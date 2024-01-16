@@ -21,27 +21,24 @@ O Personal Finance Manager é uma aplicação de código aberto desenvolvida par
 ## Instalação
 
 1. Clone o repositório para sua máquina local.
-~~~~
+   ```bash
    git clone https://github.com/seu-usuario/personal-finance-manager.git
-~~~~
+   ```bash
 
 Acesse o diretório do projeto.
 
-~~~~
+   ```bash
 cd personal-finance-manager
-~~~~
 Instale as dependências.
 
-~~~~
+   ```bash
 npm install
-~~~~
 Configure as variáveis de ambiente no arquivo .env, incluindo informações de banco de dados.
 
 Inicie o aplicativo.
 
-~~~~
+   ```bash
 npm start
-~~~~
 Acesse a aplicação no navegador: http://localhost:3000
 
 ## Contribuição
