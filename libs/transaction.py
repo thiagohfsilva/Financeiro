@@ -1,13 +1,14 @@
 class Transaction:
     def __init__(self, p_value : int, p_periodic: bool,
                  p_note : str, p_done : bool, p_expiration_day : int, p_resp : str,
-                 p_tepe : str) -> None :
+                 p_type : str) -> None :
         '''
         Classe destinada a descrever uma transação:
 
         @param p_value: Valor da transação.
         @param p_periodic: True caso se repita todos os meses.
         @param p_note: Campo de cometario para outras explicações.
+        @param p_type: Campo destinado ao tipo de transacao.
         @param p_done: Caso a transacao ja tenha sido feita.
         @param p_expiration_day: Data de vencimento da transação.
         @param p_resp: Responsável por realizar a transação.
