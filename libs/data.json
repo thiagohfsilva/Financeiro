@@ -1,0 +1,52 @@
+{
+  "months": [
+    {
+      "mes": 1,
+      "ano": 2022,
+      "transaction_list": [
+        {
+          "value": 100.0,
+          "periodic": False,
+          "note": "Compra de mantimentos",
+          "type": "Despesa",
+          "done": True,
+          "expiration_day": 5,
+          "resp": "João"
+        },
+        {
+          "value": 50.0,
+          "periodic": True,
+          "note": "Pagamento de assinatura",
+          "type": "Despesa",
+          "done": True,
+          "expiration_day": 15,
+          "resp": "Maria"
+        }
+      ]
+    },
+    {
+      "mes": 2,
+      "ano": 2022,
+      "transaction_list": [
+        {
+          "value": 200.0,
+          "periodic": False,
+          "note": "Conta de luz",
+          "type": "Despesa",
+          "done": False,
+          "expiration_day": 10,
+          "resp": "João"
+        },
+        {
+          "value": 150.0,
+          "periodic": True,
+          "note": "Pagamento de aluguel",
+          "type": "Despesa",
+          "done": True,
+          "expiration_day": 25,
+          "resp": "Maria"
+        }
+      ]
+    }
+  ]
+}
