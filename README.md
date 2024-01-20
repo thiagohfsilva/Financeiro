@@ -1,55 +1,75 @@
-# Personal Finance Manager
+# Sistema de Gestão Financeira Pessoal
 
-## Descrição
+Este repositório contém um sistema simples de gestão financeira pessoal em Python. Ele permite a criação de transações financeiras mensais, como despesas e receitas, organizadas em meses de um ano financeiro.
 
-O Personal Finance Manager é uma aplicação de código aberto desenvolvida para ajudar os usuários a gerenciar suas finanças pessoais de maneira eficiente. Com uma interface intuitiva e recursos abrangentes, este software é projetado para auxiliar na organização das finanças, acompanhamento de despesas e receitas, e fornecer insights valiosos para melhorar o controle financeiro pessoal.
+## Estrutura do Código
 
-## Funcionalidades Principais
+O código é dividido em três principais classes:
 
-- **Cadastro de Transações:** Registre suas despesas e receitas de forma simples e rápida.
-- **Categorização Automática:** O sistema categoriza automaticamente transações para facilitar a análise.
-- **Relatórios e Gráficos:** Visualize suas finanças por meio de relatórios detalhados e gráficos informativos.
-- **Metas Financeiras:** Estabeleça metas de economia e acompanhe seu progresso ao longo do tempo.
-- **Lembretes de Pagamento:** Receba lembretes automáticos para evitar atrasos em pagamentos.
+### Transaction
 
-## Requisitos de Sistema
+- **Atributos:**
+  - `id`: Identificador único da transação.
+  - `value`: Valor da transação.
+  - `periodic`: Indica se a transação se repete todos os meses.
+  - `note`: Campo para comentários ou explicações adicionais.
+  - `type`: Tipo da transação (e.g., Despesa, Receita).
+  - `done`: Indica se a transação já foi realizada.
+  - `expiration_day`: Dia de vencimento da transação.
+  - `resp`: Responsável por realizar a transação.
 
-- Node.js
-- MongoDB
-- Outras dependências específicas listadas no arquivo `package.json`
+### Month
 
-## Instalação
+- **Atributos:**
+  - `transaction_list`: Lista de transações do mês.
+  - `mes`: Valor do mês.
+  - `ano`: Ano do mês.
 
-1. Clone o repositório para sua máquina local.
+- **Métodos Principais:**
+  - `add_transaction(transaction)`: Adiciona uma transação ao mês.
+  - `delete_transaction(transaction_to_delete)`: Exclui uma transação específica do mês.
+  - `get_balance()`: Calcula o saldo do mês somando os valores das transações concluídas.
+  - `display_transactions_table()`: Exibe as transações do mês em forma de tabela.
+
+### FinancialYear
+
+- **Atributos:**
+  - `json_file_path`: Caminho para o arquivo JSON que contém os dados.
+  - `month_list`: Lista de objetos Month.
+
+- **Métodos Principais:**
+  - `load_data_from_json(json_file_path)`: Carrega os dados do arquivo JSON.
+  - `save_data_to_json()`: Salva os dados da lista de meses em um arquivo JSON.
+
+## Como Usar
+
+1. Instale as dependências necessárias utilizando o seguinte comando:
 ~~~~
-   git clone https://github.com/seu-usuario/personal-finance-manager.git
+pip install tabulate
 ~~~~
 
-Acesse o diretório do projeto.
+2. Execute o código principal fornecendo o caminho para o arquivo JSON de dados.
 
+Exemplo:
 ~~~~
-cd personal-finance-manager
+financial_year_instance = FinancialYear('data.json')
 ~~~~
-Instale as dependências.
 
+3. Interaja com o sistema criando, visualizando e manipulando transações e meses.
+Exemplo:
 ~~~~
-npm install
+# Exibir tabela de transações para cada mês
+for month in financial_year_instance.month_list:
+    month.display_transactions_table()
+
+# Adicionar uma nova transação ao primeiro mês
+new_transaction = Transaction(id=5, value=75.0, periodic=False, note="Compra online", done=False, expiration_day=20, resp="Ana", type="Despesa")
+financial_year_instance.month_list[0].add_transaction(new_transaction)
+
+# Salvar as alterações no arquivo JSON
+financial_year_instance.save_data_to_json()
 ~~~~
-Configure as variáveis de ambiente no arquivo .env, incluindo informações de banco de dados.
 
-Inicie o aplicativo.
+Lembre-se de substituir 'data.json' pelo caminho do seu próprio arquivo JSON, se necessário.
 
-~~~~
-npm start
-~~~~
-Acesse a aplicação no navegador: http://localhost:3000
-
-## Contribuição
-Contribuições são bem-vindas! Se você encontrar bugs ou tiver ideias para melhorar o Personal Finance Manager, sinta-se à vontade para abrir uma issue ou enviar um pull request.
-
-## Licença
-Este projeto está licenciado sob a Licença MIT.
-
-Esperamos que o Personal Finance Manager ajude a melhorar sua gestão financeira pessoal. Caso tenha alguma dúvida ou sugestão, não hesite em entrar em contato.
-
-Equipe Personal Finance Manager
+Este sistema oferece uma estrutura básica para gerenciar transações financeiras pessoais em um formato mensal. Sinta-se à vontade para adaptar e expandir conforme necessário.
