@@ -5,20 +5,22 @@
       "ano": 2022,
       "transaction_list": [
         {
+          "id": 1,
           "value": 100.0,
-          "periodic": False,
+          "periodic": false,
           "note": "Compra de mantimentos",
           "type": "Despesa",
-          "done": True,
+          "done": true,
           "expiration_day": 5,
-          "resp": "João"
+          "resp": "Joao"
         },
         {
+          "id": 2,
           "value": 50.0,
-          "periodic": True,
+          "periodic": true,
           "note": "Pagamento de assinatura",
           "type": "Despesa",
-          "done": True,
+          "done": true,
           "expiration_day": 15,
           "resp": "Maria"
         }
@@ -29,20 +31,22 @@
       "ano": 2022,
       "transaction_list": [
         {
+          "id": 3,
           "value": 200.0,
-          "periodic": False,
+          "periodic": false,
           "note": "Conta de luz",
           "type": "Despesa",
-          "done": False,
+          "done": false,
           "expiration_day": 10,
-          "resp": "João"
+          "resp": "Joao"
         },
         {
+          "id": 4,
           "value": 150.0,
-          "periodic": True,
+          "periodic": true,
           "note": "Pagamento de aluguel",
           "type": "Despesa",
-          "done": True,
+          "done": true,
           "expiration_day": 25,
           "resp": "Maria"
         }
