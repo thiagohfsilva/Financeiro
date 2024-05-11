@@ -1,0 +1,4 @@
+{
+    "editor.defaultFormatter": "njpwerner.autodocstring",
+    "autoDocstring.docstringFormat": "one-line-sphinx"
+}
