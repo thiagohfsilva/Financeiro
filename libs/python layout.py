@@ -41,7 +41,7 @@ def layout():
                 k='-MoverBig-',
                 button_text='Mover [F7]',
                 font='_ 16',
-                visible=True, 
+                visible=True,
             ),
         ],
         [sg.HSep()],
@@ -72,8 +72,11 @@ def layout():
         ],
         [
             sg.Table(
-                [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
-                ["um", "dois"],
+                [
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                ],
+                ['um', 'dois'],
                 auto_size_columns=True,
                 k='-TabelaBig-',
                 expand_x=False,
@@ -134,10 +137,9 @@ def layout():
         finalize=True,
         background_color='white',
         right_click_menu=sg.MENU_RIGHT_CLICK_EDITME_VER_EXIT,
-        )
+    )
 
 
 window = layout()
 while True:
-    event,values = window.read()
-
+    event, values = window.read()
