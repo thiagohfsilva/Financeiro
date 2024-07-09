@@ -37,18 +37,14 @@ class Transaction:
         self.resp = p_resp
 
 
-class Month:
-    def __init__(self, p_mes, p_ano, p_transaction_list=[]):
+class Person:
+    def __init__(self, p_transaction_list=[]):
         """
-        Classe destinada a descrever um mes:
+        Classe destinada a descrever as transacoes de uma pessoa:
 
         @param p_transaction_list: Lista de transações de um lista.
-        @param p_mes: Valor do mes.
-        @param p_ano: Ano no qual se encontra o mês.
         """
         self.transaction_list = p_transaction_list
-        self.mes = p_mes
-        self.ano = p_ano
 
     def add_transaction(self, p_transaction: Transaction):
 
@@ -71,13 +67,70 @@ class Month:
         else:
             print('A transação não foi encontrada no mês.')
 
-    def get_balance(self):
-        # Calcular o saldo do mês somando os valores das transações concluídas
-        return sum(
-            transaction.value
-            for transaction in self.transaction_list
-            if transaction.done
-        )
+    @property
+    def balance(self):
+        balance = 0
+        for transaction in self.transaction_list:
+            balance += transaction.value
+        return balance
+
+class Family:
+    """
+    teste
+    """
+    def __init__(self, p_person_list=[]):
+        """
+        Classe destinada a descrever as transacoes de uma familia:
+
+        @param p_person_list: Lista de pessoas de uma familia.
+        """
+        self.person_list = p_person_list
+
+    def add_person(self, p_person: Person):
+
+        """
+        Adiciona uma transação no mes.
+
+        @param p_transaction transação.
+        """
+        self.person_list_list += [p_person]
+
+    def delete_person(self, person_to_delete: Transaction):
+        """
+        Exclui uma transação específica do mês.
+
+        @param transaction_to_delete: Transação a ser excluída do mês.
+        """
+        # Verifica se a transação está na lista antes de tentar removê-la
+        if person_to_delete in self.person_list:
+            self.person_list.remove(person_to_delete)
+        else:
+            print('A transação não foi encontrada no mês.')
+
+    @property
+    def balance(self):
+        balance = 0
+        for person in self.person_list:
+            balance += person.balance
+        return balance
+
+
+class Month:
+    def __init__(self, p_mes, p_ano, p_family):
+        """
+        Classe destinada a descrever um mes:
+
+        @param p_transaction_list: Lista de transações de um lista.
+        @param p_mes: Valor do mes.
+        @param p_ano: Ano no qual se encontra o mês.
+        """
+        self.family = p_family
+        self.mes = p_mes
+        self.ano = p_ano
+
+    @property
+    def balance(self):
+        return self.family.balance
 
     def display_transactions_table(self):
         """
