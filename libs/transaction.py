@@ -2,20 +2,8 @@ import json
 
 from tabulate import tabulate
 
-
 class Transaction:
-    def __init__(
-        self,
-        p_id: int,
-        p_value: int,
-        p_periodic: bool,
-        p_note: str,
-        p_done: bool,
-        p_expiration_day: int,
-        p_resp: str,
-        p_type: str,
-    ) -> None:
-        """
+    """
         Classe destinada a descrever uma transação:
 
         @param p_id: Identificador único da transação.
@@ -27,6 +15,18 @@ class Transaction:
         @param p_expiration_day: Data de vencimento da transação.
         @param p_resp: Responsável por realizar a transação.
         """
+    def __init__(
+        self,
+        p_id: int,
+        p_value: int,
+        p_periodic: bool,
+        p_note: str,
+        p_done: bool,
+        p_expiration_day: int,
+        p_resp: str,
+        p_type: str,
+    ) -> None:
+
         self.id = p_id
         self.value = p_value
         self.periodic = p_periodic
@@ -36,18 +36,19 @@ class Transaction:
         self.expiration_day = p_expiration_day
         self.resp = p_resp
 
-
 class Person:
-    def __init__(self, p_transaction_list=[]):
+    def __init__(self, p_transaction_list = None):
         """
         Classe destinada a descrever as transacoes de uma pessoa:
 
         @param p_transaction_list: Lista de transações de um lista.
         """
-        self.transaction_list = p_transaction_list
+        if p_transaction_list is None:
+            self.transaction_list = []
+        else:
+            self.transaction_list = p_transaction_list
 
     def add_transaction(self, p_transaction: Transaction):
-
         """
         Adiciona uma transação no mes.
 
@@ -61,7 +62,6 @@ class Person:
 
         @param transaction_to_delete: Transação a ser excluída do mês.
         """
-        # Verifica se a transação está na lista antes de tentar removê-la
         if transaction_to_delete in self.transaction_list:
             self.transaction_list.remove(transaction_to_delete)
         else:
@@ -69,31 +69,40 @@ class Person:
 
     @property
     def balance(self):
+        """
+        Mostra o balanço de uma pessoa.
+
+        @return: mostra o balanço de uma pessoa.
+        """
         balance = 0
         for transaction in self.transaction_list:
             balance += transaction.value
         return balance
 
+
 class Family:
     """
     teste
     """
-    def __init__(self, p_person_list=[]):
+
+    def __init__(self, p_person_list=None):
         """
         Classe destinada a descrever as transacoes de uma familia:
 
         @param p_person_list: Lista de pessoas de uma familia.
         """
-        self.person_list = p_person_list
+        if p_person_list is None:
+            self.person_list = []
+        else:
+            self.person_list = p_person_list
 
     def add_person(self, p_person: Person):
-
         """
         Adiciona uma transação no mes.
 
         @param p_transaction transação.
         """
-        self.person_list_list += [p_person]
+        self.person_list += [p_person]
 
     def delete_person(self, person_to_delete: Transaction):
         """
@@ -101,7 +110,6 @@ class Family:
 
         @param transaction_to_delete: Transação a ser excluída do mês.
         """
-        # Verifica se a transação está na lista antes de tentar removê-la
         if person_to_delete in self.person_list:
             self.person_list.remove(person_to_delete)
         else:
@@ -109,10 +117,22 @@ class Family:
 
     @property
     def balance(self):
+        """
+        Mostra o balanço de uma familia.
+
+        @return: mostra o balanço de uma familia.
+        """
         balance = 0
         for person in self.person_list:
             balance += person.balance
         return balance
+
+    @property
+    def transaction_list(self):
+        lista = []
+        for person in self.person_list:
+            lista += person.transaction_list
+        return lista
 
 
 class Month:
@@ -120,7 +140,7 @@ class Month:
         """
         Classe destinada a descrever um mes:
 
-        @param p_transaction_list: Lista de transações de um lista.
+        @param p_family: Familia que fara analise em um mes.
         @param p_mes: Valor do mes.
         @param p_ano: Ano no qual se encontra o mês.
         """
@@ -130,6 +150,11 @@ class Month:
 
     @property
     def balance(self):
+        """
+        Mostra o balanço de uma familia.
+
+        @return: mostra o balanço de uma familia.
+        """
         return self.family.balance
 
     def display_transactions_table(self):
@@ -148,7 +173,7 @@ class Month:
         ]
         table_data = []
 
-        for transaction in self.transaction_list:
+        for transaction in self.family.transaction_list:
             table_data.append(
                 [
                     transaction.id,
